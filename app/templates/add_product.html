@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+
+  <h1>Add a New Product</h1>
+  <form action = "http://localhost:5000/add_up" method = "POST" >
+      Please enter the product name:<br>
+      <input type="text" name="name" size="40"><br>
+      Webpage:<br>
+      <input type="text" name="webpage" size="40"><br>
+      Growth:<br>
+      <input type="text" name="growth" size="10"><br>
+      Revenue:<br>
+      <input type="text" name="revenue" size="10"><br>
+      Industry:<br>
+      <input type="text" name="industry" size="20"><br>
+      Launched:<br>
+      <input type="text" name="launched" size="10"><br>
+      Employees:<br>
+      <input type="text" name="employees" size="10"><br>
+      Introduction<br>
+      <textarea name="introduction" cols="60" rows="20"></textarea><br>
+      <input type = "submit"/ value="Add Product">
+  </form>
+
+{% endblock %}
+

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+
+      <table>
+         <thead>
+            <tr>
+               <th>Name</th>
+               <th>Growth</th>
+               <th>Revenue</th>
+               <th>Industry</th>
+               <th>Created By</th>
+               <th>Date</th>
+            </tr>
+         </thead>
+         
+         <tbody>
+            {% for product in products  %}
+               <tr>
+                  <td><a href="/show_product?name={{product.name}}">{{ product.name }}</a></td>
+                  <td>{{ product.growth }}</td>
+                  <td>{{ product.revenue }}</td>
+                  <td>{{ product.industry }}</td>
+                  <td>{{ product.creator }}</td>
+                  <td>{{ product.date }}</td>
+               </tr>
+            {% endfor %}
+         </tbody>
+
+{% endblock %}

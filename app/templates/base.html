@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <title>Ocell New Product Library</title>
+  </head>
+  <body>
+    <div><h1>Ocell New Product Library:</h1> 
+    {% if current_user.is_authenticated %}
+    你好, {{ current_user.name }}
+    {% endif %}<br>
+    <a href="/show_list">Project List</a>
+    <a href="/add_product">Add Product</a>
+    {% if current_user.has_role('admin') %}
+    <a href="/add_source">Add Source</a>
+    <a href="/user_management">User Management</a>
+    {% endif %}
+    <a href="/logout">Logout</a>
+    </div>
+    <hr>
+    {% block content %}{% endblock %}
+  </body>
+</html>

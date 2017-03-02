@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+{% for source in sources %}
+<a href="{{ source.link }}">{{ source.link }}</a> {{ source.note }} Contribute By {{ source.creator }} On {{ source.date }}<br>
+{% endfor %}<br>
+<h1>Add a New Product</h1>
+<form action = "http://localhost:5000/add_up_source" method = "POST" >
+  Please enter source's link:<br>
+  <input type="text" name="link" size="40"><br>
+  Note<br>
+  <textarea name="note" cols="40" rows="2"></textarea><br>
+  <input type = "submit"/ value="Add Source">
+  </form>
+{% endblock %}
+

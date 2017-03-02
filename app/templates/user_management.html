@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block content %}
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                        <li>{{ message[1] }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        <form action="http://localhost:5000/user_management" method="post">
+            {{ form.csrf }}
+ 
+            <div class="input text">
+                {{ form.name.label }}: {{ form.name }}
+            </div>
+            <div class="input text">
+                {{ form.role.label }}: {{ form.role }}
+            </div>
+            <div class="input text">
+                {{ form.email.label }}: {{ form.email }}
+            </div>
+            <div class="input text">
+                {{ form.company.label }}: {{ form.company }}
+            </div>
+            <div class="input text">
+                {{ form.password.label }}: {{ form.password }}
+            </div>
+             <div class="input submit">
+                <input type="submit" value="Add User" />
+            </div>
+        </form>
+	<br><br>
+      <table>
+         <thead>
+            <tr>
+	       <td></td>
+               <th>Name</th>
+               <th>Role</th>
+               <th>Email</th>
+               <th>Company</th>
+               <th>Password</th>
+               <th>Date</th>
+            </tr>
+         </thead>
+         
+         <tbody>
+         <form action="http://localhost:5000/remove_user" method="post">
+            {{ form.csrf }}
+            {% for user in users  %}
+               <tr>
+               <div class="input text">
+                  <td><input type="checkbox" name="user_list" value={{user.email }}></td>
+                  <td>{{ user.name }}</td>
+                  <td>{{ user.role }}</td>
+                  <td>{{ user.email }}</td>
+                  <td>{{ user.company }}</td>
+                  <td>{{ user.password }}</td>
+                  <td>{{ user.date }}</td>
+               </tr>
+	       </div>
+            {% endfor %}
+         <div class="input submit">
+         <input type="submit" value="Remove User" />
+         </div>
+         </form>
+         </tbody>
+	
+
+{% endblock %}

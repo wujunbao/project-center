@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+
+<hr>
+Project Name: {{ product.name }}<br><br>
+  Website: <a href="{{ product.webpage }}">{{ product.webpage }}</a>
+<br><br>
+Growth: {{ product.growth }}<br>
+Revenue: {{ product.revenue }}<br><br>
+
+Industry: {{ product.industry }}<br>
+Launched: {{ product.launched }}<br>
+Employees: {{ product.employees }}<br><br>
+
+Introduction:<br>{{ product.introduction }}<br><br>
+Project Created By: {{ product.creator }} On Date {{ product.date }}
+<br><br>
+Resource:<br>
+{% for resource in resources %}
+  {% if resource.rtype =='link' %}
+    <a href="{{ resource.link }}">{{ resource.link }}</a>      {{ resource.note }}  Created By {{ resource.creator }}  On {{ resource.date }}
+  {% else %}
+    <a href="{{ resource.link }}">{{ resource.link }}</a>      {{ resource.note }}    Created By {{ resource.creator }}  On {{ resource.date }}
+  {% endif %}<br>
+{% endfor %}<br>
+Reviews:<br>
+{% for review in reviews %}
+  {{ review }}<br>
+Reviewed By {{ review.creator }} On {{ review.date }}<br><br>
+{% endfor %}<br>
+Add a link: <br>
+<form action = "http://localhost:5000/add_link?name={{product.name}}" method = "POST" >
+  Note: <input type="text" name="note" size="40"><br>
+  Link: <input type="text" name="link" size="40"><br>
+  <input type = "submit" value="Add Link"/>
+</form>
+Add a file: <br>
+<form action = "http://localhost:5000/add_file?name={{product.name}}" method = "POST" enctype = "multipart/form-data">
+  Note: <input type="text" name="note" size="40"><br>
+  <input type = "file" name = "file" /><br>
+  <input type = "submit" value="Add File"/>
+</form>
+Add a review:<br>
+<form action = "http://localhost:5000/add_review?name={{product.name}}" method = "POST" >
+  <textarea name="review" cols="60" rows="30"></textarea><br>
+  <input type = "submit" value="Add Review"/>
+</form>
+{% endblock %}
